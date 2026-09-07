@@ -1,0 +1,17 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# urednici
+.vscode/
+.idea/
+*.swp
+
+# node (projekt nema ovisnosti, ali za svaki slučaj)
+node_modules/
+
+# međurezultati Overpass dohvata — veliki i lako se ponovno skinu
+# (`node tools/overpass.js`)
+tools/data/streets.json
+tools/data/addr.json

@@ -1,0 +1,488 @@
+{
+ "Ulica 30. svibnja 29A|Milanovac": {
+  "ll": [
+   45.79851,
+   17.39079
+  ],
+  "why": "Ulica 30. svibnja, Sveto Trojstvo, Milanovac, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/tertiary",
+  "tier": 0
+ },
+ "Ulica 30. svibnja 3|Milanovac": {
+  "ll": [
+   45.80486,
+   17.38598
+  ],
+  "why": "Ulica 30. svibnja, Sveto Trojstvo, Milanovac, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Vatroslava Lisinskog 6|Virovitica": {
+  "ll": [
+   45.70346,
+   17.70527
+  ],
+  "why": "Ulica Vatroslava Lisinskog, Dedinje, Viđinica, Slatina, Grad Slatina, Virovitičko-podravska županija, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Vatroslava Lisinskog 172|Virovitica": {
+  "ll": [
+   45.70346,
+   17.70527
+  ],
+  "why": "Ulica Vatroslava Lisinskog, Dedinje, Viđinica, Slatina, Grad Slatina, Virovitičko-podravska županija, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Zlatnog polja 63|Virovitica": {
+  "ll": [
+   45.81746,
+   17.39898
+  ],
+  "why": "Ulica Zlatnog polja, Zlatno polje, Taborište, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Vukovarska cesta|Virovitica": {
+  "ll": [
+   45.8209,
+   17.39001
+  ],
+  "why": "Vukovarska cesta, Branjevina, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/primary",
+  "tier": 0
+ },
+ "Ulica Zbora narodne garde 29|Virovitica": {
+  "ll": [
+   45.82185,
+   17.38692
+  ],
+  "why": "Tehnička škola Virovitica, 29, Ulica Zbora narodne garde, Dedinje, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "amenity/school",
+  "tier": 0
+ },
+ "Ulica Nikole Tesle 4|Virovitica": {
+  "ll": [
+   45.82791,
+   17.38522
+  ],
+  "why": "Centar za odgoj, obrazovanje i rehabilitaciju Virovitica, 4, Ulica Nikole Tesle, Dedinje, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "amenity/school",
+  "tier": 0
+ },
+ "Ulica Tomaša Masaryka 21|Virovitica": {
+  "ll": [
+   45.82895,
+   17.38455
+  ],
+  "why": "Osnovna škola Vladimir Nazor, 21, Ulica Tomaša Masaryka, Dedinje, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "amenity/school",
+  "tier": 0
+ },
+ "Trg bana Josipa Jelačića 6|Virovitica": {
+  "ll": [
+   45.83336,
+   17.38755
+  ],
+  "why": "Trg bana Josipa Jelačića, Beč, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Ferde Rusana 20|Virovitica": {
+  "ll": [
+   45.83505,
+   17.3875
+  ],
+  "why": "Ulica Ferde Rusana, Manteč, Beč, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Matije Gupca 65|Virovitica": {
+  "ll": [
+   45.8507,
+   17.38859
+  ],
+  "why": "Ulica Matije Gupca, Kasarne, Batalije, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica Vlahe Bukovca 13|Virovitica": {
+  "ll": [
+   45.84331,
+   17.38897
+  ],
+  "why": "Ulica Vlahe Bukovca, Kasarne, Kraševo naselje, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Ferde Rusana 26|Virovitica": {
+  "ll": [
+   45.83434,
+   17.387
+  ],
+  "why": "Ulica Ferde Rusana, Manteč, Bikana, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Trg Ljudevita Patačića 3|Virovitica": {
+  "ll": [
+   45.83364,
+   17.3833
+  ],
+  "why": "3, Trg Ljudevita Patačića, Dedinje, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "building/yes",
+  "tier": 0
+ },
+ "Ulica Tomaša Masaryka 22|Virovitica": {
+  "ll": [
+   45.82886,
+   17.38391
+  ],
+  "why": "Ulica Tomaša Masaryka, Dedinje, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Zbora narodne garde 4|Virovitica": {
+  "ll": [
+   45.8152,
+   17.38564
+  ],
+  "why": "Ulica Zbora narodne garde, Branjevina, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica Zlatnog polja 82|Virovitica": {
+  "ll": [
+   45.81591,
+   17.39783
+  ],
+  "why": "Ulica Zlatnog polja, Zlatno polje, Taborište, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Vatroslava Lisinskog 170|Virovitica": {
+  "ll": [
+   45.70346,
+   17.70527
+  ],
+  "why": "Ulica Vatroslava Lisinskog, Dedinje, Viđinica, Slatina, Grad Slatina, Virovitičko-podravska županija, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Vatroslava Lisinskog 1|Virovitica": {
+  "ll": [
+   45.70346,
+   17.70527
+  ],
+  "why": "Ulica Vatroslava Lisinskog, Dedinje, Viđinica, Slatina, Grad Slatina, Virovitičko-podravska županija, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica 30. svibnja 4|Milanovac": {
+  "ll": [
+   45.79851,
+   17.39079
+  ],
+  "why": "Ulica 30. svibnja, Sveto Trojstvo, Milanovac, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/tertiary",
+  "tier": 0
+ },
+ "Ulica kardinala Franje Kuharića 1|Čemernica": {
+  "ll": [
+   45.81268,
+   17.4361
+  ],
+  "why": "Ulica kardinala Franje Kuharića, Čemernica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Osječka ulica 133|Virovitica": {
+  "ll": [
+   45.82229,
+   17.4111
+  ],
+  "why": "Osječka ulica, Taborište, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/primary",
+  "tier": 0
+ },
+ "Ulica Stjepana Radića 149|Virovitica": {
+  "ll": [
+   45.83047,
+   17.38988
+  ],
+  "why": "Ulica Stjepana Radića, Bara, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica Đure Dečaka|Virovitica": null,
+ "Ulica Josipa Jurja Strossmayera 36|Virovitica": {
+  "ll": [
+   45.83483,
+   17.37792
+  ],
+  "why": "Pizzeria 4M, 36, Ulica Josipa Jurja Strossmayera, Štrumfovo naselje, Čimen, Bajer, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "building/yes",
+  "tier": 0
+ },
+ "Vinogradska ulica 2|Virovitica": {
+  "ll": [
+   45.81621,
+   17.35958
+  ],
+  "why": "Vinogradska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Vinogradska ulica 50|Virovitica": {
+  "ll": [
+   45.81621,
+   17.35958
+  ],
+  "why": "Vinogradska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Franje Fujsa 42|Virovitica": null,
+ "Vinogradska ulica 83|Virovitica": {
+  "ll": [
+   45.81621,
+   17.35958
+  ],
+  "why": "Vinogradska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Vinogradska ulica 7|Virovitica": {
+  "ll": [
+   45.81621,
+   17.35958
+  ],
+  "why": "Vinogradska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Josipa Jurja Strossmayera 37|Virovitica": {
+  "ll": [
+   45.84134,
+   17.35551
+  ],
+  "why": "Ulica Josipa Jurja Strossmayera, Bajer, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica Stjepana Radića 118A|Virovitica": {
+  "ll": [
+   45.83047,
+   17.38988
+  ],
+  "why": "Ulica Stjepana Radića, Bara, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Osječka ulica 54|Virovitica": {
+  "ll": [
+   45.82328,
+   17.40695
+  ],
+  "why": "Osječka ulica, Suvara, Taborište, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/primary",
+  "tier": 0
+ },
+ "Zagrebačka ulica 66|Virovitica": {
+  "ll": [
+   45.81457,
+   17.44292
+  ],
+  "why": "Zagrebačka ulica, Čemernica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/primary",
+  "tier": 0
+ },
+ "Bilogorska ulica 88|Golo Brdo": {
+  "ll": [
+   45.82912,
+   17.32611
+  ],
+  "why": "Bilogorska ulica, Golo Brdo, Grad Virovitica, Virovitičko-podravska županija, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica svetog Nikole Tavelića 89|Podgorje": {
+  "ll": [
+   45.82393,
+   17.33929
+  ],
+  "why": "Ulica svetog Nikole Tavelića, Podgorje, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica svetog Nikole Tavelića 33|Podgorje": {
+  "ll": [
+   45.82342,
+   17.34037
+  ],
+  "why": "Područna škola Podgorje, 33, Ulica svetog Nikole Tavelića, Podgorje, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "amenity/school",
+  "tier": 0
+ },
+ "Vinogradska ulica 4|Podgorje": {
+  "ll": [
+   45.82473,
+   17.34913
+  ],
+  "why": "Vinogradska ulica, Podgorje, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Bilogorska ulica 46|Sveti Đurađ": {
+  "ll": [
+   45.82013,
+   17.35777
+  ],
+  "why": "Bilogorska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Mlinska ulica 1|Sveti Đurađ": {
+  "ll": [
+   45.81302,
+   17.36861
+  ],
+  "why": "Mlinska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Antunovac 25|Virovitica": {
+  "ll": [
+   45.8294,
+   17.37427
+  ],
+  "why": "Ulica Ksavera Šandora Gjalskog, Štrumfovo naselje, Brekinja, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 1
+ },
+ "Ulica Đure Baričeka 38|Virovitica": null,
+ "Ulica Ivana Gundulića 60|Virovitica": {
+  "ll": [
+   45.83358,
+   17.39368
+  ],
+  "why": "Ulica Ivana Gundulića, Bara, Beč, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Sajmište 2|Virovitica": null,
+ "Vinkovačka cesta 10|Virovitica": {
+  "ll": [
+   45.82447,
+   17.39323
+  ],
+  "why": "Vinkovačka cesta, Suvara, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/primary",
+  "tier": 0
+ },
+ "Ulica Novi Rezovac 8|Virovitica": null,
+ "Ulica Lanište 2|Rezovac": null,
+ "Ulica Rezovački vinogradi 22|Rezovac": null,
+ "Ulica svetog Mihovila 22|Rezovačke Krčevine": {
+  "ll": [
+   45.78783,
+   17.40407
+  ],
+  "why": "Ulica svetog Mihovila, Rezovačke Krčevine, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica svetog Mihovila 78|Rezovačke Krčevine": {
+  "ll": [
+   45.78244,
+   17.40159
+  ],
+  "why": "Područna škola Rezovačke Krčevine, 78, Ulica svetog Mihovila, Rezovačke Krčevine, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "amenity/school",
+  "tier": 0
+ },
+ "Ulica svetog Mihovila 5|Rezovačke Krčevine": {
+  "ll": [
+   45.78783,
+   17.40407
+  ],
+  "why": "Ulica svetog Mihovila, Rezovačke Krčevine, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica Rezovački vinogradi 29|Rezovac": null,
+ "Ulica Novi Rezovac 1|Virovitica": null,
+ "Vinkovačka cesta 13|Virovitica": {
+  "ll": [
+   45.82447,
+   17.39323
+  ],
+  "why": "Vinkovačka cesta, Suvara, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/primary",
+  "tier": 0
+ },
+ "Ulica Ivana Gundulića 67|Virovitica": {
+  "ll": [
+   45.83358,
+   17.39368
+  ],
+  "why": "Ulica Ivana Gundulića, Bara, Beč, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica dr. Andrije Štampara 22|Virovitica": {
+  "ll": [
+   45.83675,
+   17.39339
+  ],
+  "why": "Ulica dr. Andrije Štampara, Bara, Beč, Petrovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Ulica Tomaša Masaryka 3|Virovitica": {
+  "ll": [
+   45.82886,
+   17.38391
+  ],
+  "why": "Ulica Tomaša Masaryka, Dedinje, Removac, Antunovac, Virovitica, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/residential",
+  "tier": 0
+ },
+ "Bilogorska ulica 41|Sveti Đurađ": {
+  "ll": [
+   45.82013,
+   17.35777
+  ],
+  "why": "Bilogorska ulica, Sveti Đurađ, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica svetog Nikole Tavelića 4|Podgorje": {
+  "ll": [
+   45.82393,
+   17.33929
+  ],
+  "why": "Ulica svetog Nikole Tavelića, Podgorje, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Ulica svetog Nikole Tavelića 24|Podgorje": {
+  "ll": [
+   45.82393,
+   17.33929
+  ],
+  "why": "Ulica svetog Nikole Tavelića, Podgorje, Grad Virovitica, Virovitičko-podravska županija, 33000, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ },
+ "Bilogorska ulica 4|Golo Brdo": {
+  "ll": [
+   45.82912,
+   17.32611
+  ],
+  "why": "Bilogorska ulica, Golo Brdo, Grad Virovitica, Virovitičko-podravska županija, Hrvatska",
+  "cls": "highway/secondary",
+  "tier": 0
+ }
+}

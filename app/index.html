@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="Linije, stajališta, karta i vozni red virovitičkih električnih autobusa — linije 1, 2, 3 i noćna linija.">
+<title>Virovitički električni autobusi</title>
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ================= ZAGLAVLJE: filtar linija ================= -->
+  <header class="bar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 9h16"/>
+          <circle cx="8" cy="13.5" r="1.1" fill="currentColor" stroke="none"/>
+          <circle cx="16" cy="13.5" r="1.1" fill="currentColor" stroke="none"/>
+          <path d="M7 17v3M17 17v3"/>
+        </svg>
+      </span>
+      <span class="brand-txt">
+        <b>Virovitički e-busevi</b>
+        <small id="brandSub">gradski prijevoz</small>
+      </span>
+    </div>
+
+    <nav class="lines" id="lineFilter" role="tablist" aria-label="Filtar linija"></nav>
+
+    <div class="bar-tools">
+      <button class="tool" id="btnLocate" title="Pronađi najbliža stajališta">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="8"/>
+          <path d="M12 1.6v2.6M12 19.8v2.6M22.4 12h-2.6M4.2 12H1.6"/>
+        </svg><span>U blizini</span>
+      </button>
+      <button class="tool icon" id="btnTheme" title="Svijetla / tamna tema" aria-label="Promijeni temu">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8Z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= RADNA PLOHA ================= -->
+  <div class="grid" id="grid">
+
+    <!-- LIJEVO: stajališta -->
+    <aside class="panel" id="paneStops" data-pane="stajalista">
+      <div class="panel-head">
+        <div class="dirswitch" id="dirSwitch"></div>
+        <div class="findrow">
+          <span class="findico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>
+            </svg>
+          </span>
+          <input id="q" type="search" placeholder="Traži stajalište ili ulicu…" autocomplete="off" aria-label="Traži stajalište">
+          <button class="star-filter" id="btnFavOnly" title="Prikaži samo favorite" aria-pressed="false">★</button>
+        </div>
+        <p class="panel-meta" id="stopsMeta"></p>
+      </div>
+      <div class="panel-body" id="stopsList"></div>
+    </aside>
+
+    <!-- SREDINA: karta -->
+    <section class="mapwrap" data-pane="karta">
+      <div id="map"></div>
+      <div class="map-legend" id="mapLegend"></div>
+      <div class="map-ctrl">
+        <button id="btnFit" title="Uklopi cijelu rutu u prikaz" aria-label="Uklopi rutu">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>
+          </svg>
+        </button>
+        <button id="btnMe" title="Moja lokacija" aria-label="Moja lokacija">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.5 2.5-9 19-2.5-8.5L1.5 10.5Z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- DESNO: polasci, vozni red, cijene -->
+    <aside class="panel panel-right" id="paneInfo" data-pane="info">
+      <div class="panel-body" id="infoPanel"></div>
+    </aside>
+  </div>
+
+  <!-- Prebacivanje prikaza na uskim zaslonima -->
+  <nav class="mobile-tabs" id="mobileTabs" aria-label="Prikaz">
+    <button data-pane="karta" class="on">Karta</button>
+    <button data-pane="stajalista">Stajališta</button>
+    <button data-pane="info">Polasci</button>
+  </nav>
+</div>
+
+<!-- Shema linije preko cijelog zaslona -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lbClose" aria-label="Zatvori">✕</button>
+  <div class="lb-stage"><img id="lbImg" alt="Shema linije"></div>
+  <p class="lb-hint">Kotačić ili dvoklik za zoom · povuci za pomicanje · Esc za izlaz</p>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="js/data.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
