@@ -27,9 +27,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Pages je uključen jednokratno (izvor: GitHub Actions). GITHUB_TOKEN
+      # nema pravo sam stvoriti Pages sajt, pa se ovdje samo čita postavka.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
