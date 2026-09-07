@@ -38,10 +38,11 @@ trakom. Svijetla i tamna tema.
   OpenStreetMapa; točnost je reda veličine 50–150 m.
 - **Rute** — izračunate OSRM-om po OSM cestama.
 - **Cijene karata** — službeni cjenik Grada Virovitice.
-- **Vozni red** — **okviran**. Službena vremena po stajalištima još nisu
-  objavljena, pa se polasci generiraju iz objavljenog okvira (dnevne linije
-  približno 6–22:30 svakih 45 minuta, noćna vikendom 22:30–4:50). To je i u
-  aplikaciji jasno označeno.
+- **Vozni red** — **ne postoji i ne izmišlja se**. Službena vremena po
+  stajalištima još nisu objavljena, pa aplikacija prikazuje samo objavljeno
+  radno vrijeme linija (dnevne 6:00–22:30, otprilike svakih 45 minuta; noćna
+  vikendom 22:30–4:50). Pojedinačnih vremena polazaka nema dok ne stignu
+  službena — struktura za njih pripremljena je u `app/js/data.js`.
 
 ## Licence
 

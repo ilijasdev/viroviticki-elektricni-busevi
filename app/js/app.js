@@ -13,7 +13,6 @@
   const S = {
     line: "all",     // "all" | "1" | "2" | "3" | "n"
     dir : "A",       // smjer unutar linije
-    day : dayKey(new Date()),
     q   : "",
     favOnly: false,
     near: null       // [lat, lon] kad korisnik traži najbliža stajališta
@@ -42,7 +41,6 @@
     .replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const pad   = n => (n < 10 ? "0" : "") + n;
   const toMin = t => { const p = t.split(":"); return +p[0] * 60 + +p[1]; };
-  const hhmm  = m => pad(Math.floor((m % 1440) / 60)) + ":" + pad(m % 60);
   const lineById = id => LINES.find(l => l.id === id);
 
   function dayKey(d) { const w = d.getDay(); return w === 0 ? "nedjelja" : w === 6 ? "subota" : "radni"; }
@@ -97,35 +95,29 @@
 
   /* ---------------- vozni red ---------------- */
 
-  function departures(line, day) {
-    const s = line.schedule && line.schedule[day];
-    if (!s) return [];
-    if (s.times) return s.times.map(toMin);
-    let a = toMin(s.first), b = toMin(s.last);
-    if (b < a) b += 1440;                       // noćna linija prelazi ponoć
-    const out = [];
-    for (let t = a; t <= b; t += s.headway) out.push(t);
-    return out;
-  }
+  /* Aplikacija ne izvodi i ne procjenjuje vremena polazaka. Prikazuje ih
+     samo ako su u js/data.js upisana stvarna vremena (line.schedule).
+     Dok ih nema, prikazuje se objavljeno radno vrijeme (line.hours). */
 
-  /** sljedeći polazak od sada; vraća { at, mins, then[] } ili null */
+  const departures = (line, day) => {
+    const d = line.schedule && line.schedule[day];
+    return Array.isArray(d) ? d : [];
+  };
+
+  const hasSchedule = line => !!line.schedule &&
+    Object.keys(line.schedule).some(k => departures(line, k).length);
+
+  /** sljedeći polazak iz stvarnog voznog reda; null ako reda nema */
   function nextDeparture(line, now) {
+    if (!hasSchedule(line)) return null;
     now = now || new Date();
     const nowMin = now.getHours() * 60 + now.getMinutes();
-
-    // jučerašnji polasci koji se prelijevaju preko ponoći
-    const yst = new Date(now.getTime() - 86400000);
-    const late = departures(line, dayKey(yst)).filter(t => t >= 1440).map(t => t - 1440);
-    const today = departures(line, dayKey(now));
-    const pool = late.concat(today);
-
-    for (let i = 0; i < pool.length; i++) {
-      if (pool[i] >= nowMin) {
-        return { at: hhmm(pool[i]), mins: pool[i] - nowMin, then: pool.slice(i + 1, i + 3).map(hhmm) };
-      }
-    }
+    const list = departures(line, dayKey(now)).map(toMin).sort((a, b) => a - b);
+    for (const t of list) if (t >= nowMin) return { at: hhmm2(t), mins: t - nowMin };
     return null;
   }
+
+  const hhmm2 = m => pad(Math.floor(m / 60)) + ":" + pad(m % 60);
 
   function fmtIn(m) {
     if (m <= 0) return "polazi sada";
@@ -273,11 +265,13 @@
     LINES.forEach(l => {
       const nd = nextDeparture(l, now);
       const on = S.line === l.id;
+      const sub = nd ? nd.at + " · " + fmtIn(nd.mins)
+                     : l.hours.when + (l.night ? " · " + l.hours.days : "");
       html += '<button class="chip' + (on ? " on" : "") + '" data-id="' + l.id + '" role="tab"' +
               ' aria-selected="' + on + '" style="--c:' + l.color + '">' +
               '<span class="chip-badge">' + esc(l.short) + '</span>' +
               '<span class="chip-txt"><b>' + esc(l.night ? "Noćna" : "Linija " + l.short) + '</b>' +
-              '<span>' + (nd ? esc(nd.at) + " · " + esc(fmtIn(nd.mins)) : "danas ne vozi") + '</span></span></button>';
+              '<span>' + esc(sub) + '</span></span></button>';
     });
     el.chips.innerHTML = html;
   }
@@ -350,7 +344,7 @@
     } else {
       const r = dirOf(S.line, S.dir);
       el.stopsMeta.innerHTML = '<span>' + (shown === count ? count + " stajališta" : shown + " od " + count) + '</span>' +
-                               '<span>' + (r.km ? r.km + " km · " + r.min + " min" : "") + '</span>';
+                               '<span>' + (r.km ? r.km + " km" : "") + '</span>';
     }
   }
 
@@ -424,17 +418,17 @@
 
   function overviewCards() {
     const now = new Date();
-    let html = '<div class="card"><h3 class="card-title">Sljedeći polasci<span>' + esc(DAN[S.day]) + '</span></h3>';
+    let html = '<div class="card"><h3 class="card-title">Linije</h3>';
     LINES.forEach(l => {
       const nd = nextDeparture(l, now);
-      const r = dirOf(l.id, dirsOf(l.id)[0]);
       html += '<button class="linerow" data-line="' + l.id + '" style="--c:' + l.color + '">' +
               '<span class="linerow-badge">' + esc(l.short) + '</span>' +
               '<span style="min-width:0"><span class="linerow-name">' + esc(l.name) + '</span>' +
               '<span class="linerow-sub">' + esc(l.area) + '</span></span>' +
-              '<span class="linerow-time' + (nd ? "" : " off") + '">' + (nd ? esc(nd.at) : "—") + '</span></button>';
+              '<span class="linerow-time' + (nd ? "" : " off") + '">' +
+              esc(nd ? nd.at : l.hours.when) + '</span></button>';
     });
-    html += '</div>';
+    html += '</div>' + hoursCard();
 
     html += '<div class="card"><h3 class="card-title">Mreža</h3><div class="stats">' +
       stat(LINES.length, "linije") +
@@ -461,31 +455,26 @@
     const nd = nextDeparture(line);
     const c = line.color;
 
-    /* sljedeći polazak */
-    let html = '<div class="card"><h3 class="card-title">Sljedeći polazak<span>' + esc(DAN[S.day]) + '</span></h3>' +
+    /* Kad voze — objavljeni okvir, ili stvarni polazak ako vozni red postoji */
+    let html = '<div class="card"><h3 class="card-title">Kad vozi<span>' +
+      esc(line.hours.days) + '</span></h3>' +
       '<div class="next" style="--c:' + c + '">' +
       '<span class="next-badge">' + esc(line.short) + '</span>' +
       '<span class="next-main">' +
-        (nd ? '<span class="next-time">' + esc(nd.at) + '</span><span class="next-in"><b>' + esc(fmtIn(nd.mins)) + '</b></span>'
-            : '<span class="next-time off">' + (line.schedule[dayKey(new Date())] ? "Danas gotovo" : "Danas ne vozi") + '</span>' +
-              '<span class="next-in">' + (line.night ? "Noćna linija vozi vikendom" : "Provjeri vozni red") + '</span>') +
-      '</span>' +
-      (nd && nd.then.length ? '<span class="next-then">' + nd.then.map(t => "<span>" + esc(t) + "</span>").join("") + '</span>' : "") +
-      '</div></div>';
-
-    /* vozni red */
-    html += '<div class="card sched"><h3 class="card-title">Vozni red<span>' +
-      esc(r.from + " → " + r.to) + '</span></h3>' +
-      '<div class="days">' + Object.keys(DAN).map(k =>
-        '<button data-day="' + k + '" class="' + (S.day === k ? "on" : "") + '">' +
-        esc(DAN[k].split(" ")[0]) + (k === dayKey(new Date()) ? " · danas" : "") + '</button>').join("") + '</div>' +
-      timesGrid(line) + '</div>';
+        (nd ? '<span class="next-time">' + esc(nd.at) + '</span>' +
+              '<span class="next-in"><b>' + esc(fmtIn(nd.mins)) + '</b></span>'
+            : '<span class="next-time">' + esc(line.hours.when) + '</span>' +
+              '<span class="next-in">' + esc(line.hours.freq) + '</span>') +
+      '</span></div>' +
+      (hasSchedule(line) ? scheduleGrid(line) :
+        '<p class="hint">' + esc(SERVICE.vozniRed) + '</p>') +
+      '</div>';
 
     /* o liniji */
     html += '<div class="card"><h3 class="card-title">O liniji</h3><div class="stats">' +
       stat(r.stops.length, "stajališta") +
       stat(r.km ? r.km + " km" : "—", "duljina") +
-      stat(r.min ? r.min + " min" : "—", "vožnje") +
+      stat(new Set(r.stops.map(x => x.place)).size, "naselja") +
       '</div><p class="desc">' + esc(line.desc) + '</p>' +
       '<button class="scheme-btn" data-scheme="' + esc(line.scheme) + '">' +
       '<img src="' + esc(line.scheme) + '" alt="Službena shema — ' + esc(line.name) + '" loading="lazy">' +
@@ -493,18 +482,30 @@
     return html;
   }
 
-  function timesGrid(line) {
-    const list = departures(line, S.day);
-    if (!list.length) {
-      return '<div class="times-grid"><p class="desc" style="grid-column:1/-1;margin:4px 0 0">' +
-             (line.night ? "Noćna linija vozi samo vikendom." : "Na ovaj dan linija ne prometuje.") + '</p></div>';
-    }
-    const isToday = S.day === dayKey(new Date());
-    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
-    const nextIdx = isToday ? list.findIndex(t => t >= nowMin) : -1;
-    return '<div class="times-grid" style="--c:' + line.color + '">' + list.map((t, i) =>
-      '<span class="t' + (isToday && i === nextIdx ? " next" : "") +
-      (isToday && nextIdx > -1 && i < nextIdx ? " past" : "") + '">' + hhmm(t) + '</span>').join("") + '</div>';
+  /* Prikazuje se tek kad su u data.js upisana stvarna vremena. */
+  function scheduleGrid(line) {
+    const DANI = { radni: "Radni dan", subota: "Subota", nedjelja: "Nedjelja" };
+    const today = dayKey(new Date());
+    return '<div class="days-list">' + Object.keys(DANI).map(k => {
+      const list = departures(line, k);
+      if (!list.length) return "";
+      return '<div class="dayrow' + (k === today ? " today" : "") + '">' +
+             '<b>' + esc(DANI[k]) + '</b><span>' + list.map(esc).join(" · ") + '</span></div>';
+    }).join("") + '</div>';
+  }
+
+  /* Objavljeni okvir prometovanja — doslovno, bez izvođenja polazaka. */
+  function hoursCard() {
+    return '<div class="card"><h3 class="card-title">Kad voze</h3>' +
+      '<div class="hours">' +
+      LINES.map(l =>
+        '<div class="hourrow" style="--c:' + l.color + '">' +
+        '<span class="pill" style="--c:' + l.color + '">' + esc(l.short) + '</span>' +
+        '<span class="hr-when">' + esc(l.hours.when) + '</span>' +
+        '<span class="hr-days">' + esc(l.hours.days) + '</span></div>').join("") +
+      '</div>' +
+      '<p class="desc" style="margin:10px 0 0">' + esc(SERVICE.dnevne) + ' ' + esc(SERVICE.nocna) + '</p>' +
+      '<p class="hint">' + esc(SERVICE.vozniRed) + '</p></div>';
   }
 
   function faresCard() {
@@ -523,9 +524,9 @@
   }
 
   function attribCard() {
-    return '<div class="card"><div class="notice">⚠<span><b>Vozni red je okviran.</b> ' +
-      'Službena vremena po stajalištima još nisu objavljena, pa su polasci izračunati iz objavljenog ' +
-      'okvira: dnevne linije od 6 do 22:30 svakih 45 minuta, noćna vikendom od 22:30 do 4:50.</span></div>' +
+    return '<div class="card"><div class="notice">ⓘ<span><b>' + esc(SERVICE.vozniRed) + '</b> ' +
+      'Aplikacija zato prikazuje samo objavljeno radno vrijeme linija, bez pojedinačnih ' +
+      'vremena polazaka.</span></div>' +
       '<p class="attrib" style="padding:11px 0 0">' +
       'Stajališta i njihov redoslijed: službeni popis lokacija stajališta (EY). ' +
       'Karta, ulice i položaji: © OpenStreetMap suradnici (ODbL); rute izračunate OSRM-om. ' +
@@ -535,18 +536,9 @@
   function wireInfo() {
     el.info.querySelectorAll(".linerow").forEach(b =>
       b.onclick = () => setLine(b.dataset.line));
-    el.info.querySelectorAll(".days button").forEach(b =>
-      b.onclick = () => { S.day = b.dataset.day; renderInfo(); });
     const sb = el.info.querySelector(".scheme-btn");
     if (sb) sb.onclick = () => openLightbox(sb.dataset.scheme);
 
-    // mreža polazaka se sama pomakne na sljedeći polazak
-    // (ručno, da scrollIntoView ne povuče i cijeli desni panel)
-    const nx = el.info.querySelector(".t.next");
-    if (nx) {
-      const g = nx.parentNode;
-      g.scrollTop = Math.max(0, nx.offsetTop - g.clientHeight / 2 + nx.offsetHeight / 2);
-    }
   }
 
   /* ---------------- prijelazi stanja ---------------- */
@@ -766,9 +758,8 @@
     if (pendingFit) { map.fitBounds(pendingFit, { padding: [34, 34] }); pendingFit = null; }
   });
 
-  /* osvježi vremena svake minute */
-  setInterval(() => {
-    renderChips();
-    if (S.day === dayKey(new Date())) renderInfo();
-  }, 60000);
+  /* osvježavaj samo ako postoji stvarni vozni red */
+  if (LINES.some(hasSchedule)) {
+    setInterval(() => { renderChips(); renderInfo(); }, 60000);
+  }
 })();

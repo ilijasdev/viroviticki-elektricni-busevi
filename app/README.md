@@ -23,7 +23,7 @@ Za objavu prekopiraj cijelu mapu `app/` na bilo koji statični hosting
 
     index.html            ljuska: zaglavlje, tri plohe, svjetlosni okvir
     css/style.css         stilovi, tokeni, tamna tema, prijelomne točke
-    js/data.js            linije, opisi, VOZNI RED, CIJENE KARATA  ← ovdje se uređuje
+    js/data.js            linije, opisi, RADNO VRIJEME, CIJENE KARATA  ← ovdje se uređuje
     js/routes.js          stajališta, adrese i geometrija ruta (GENERIRANO)
     js/app.js             stanje, prikazi i karta
     img/                  fotografija autobusa + službene sheme linija
@@ -32,7 +32,7 @@ Za objavu prekopiraj cijelu mapu `app/` na bilo koji statični hosting
 ## Sučelje
 
 - **Filtar linija** (vrh) — `Sve linije`, `1`, `2`, `3`, `Noćna`. Uz svaku
-  liniju piše sljedeći polazak. Tipke `0`–`3` i `N` prebacuju linije, `/`
+  liniju piše radno vrijeme. Tipke `0`–`3` i `N` prebacuju linije, `/`
   skače u tražilicu.
 - **Stajališta** (lijevo) — redom vožnje za odabranu liniju, s oznakom
   stajališta (npr. `I12`), adresom i vrstom (stajalište / ugibalište /
@@ -41,8 +41,9 @@ Za objavu prekopiraj cijelu mapu `app/` na bilo koji statični hosting
   sprema favorite (localStorage), tipka ★ filtrira samo njih.
 - **Karta** (sredina) — Leaflet + OpenStreetMap. Klik na stajalište u popisu
   približava kartu i otvara oblačić; prelazak mišem osvjetljava marker.
-- **Polasci** (desno) — sljedeći polazak, vozni red po danima, podaci o
-  liniji sa službenom shemom (klik → puni zaslon) i cjenik karata.
+- **Polasci** (desno) — radno vrijeme linije, podaci o liniji sa službenom
+  shemom (klik → puni zaslon) i cjenik karata. Kad se u `js/data.js` upišu
+  stvarna vremena polazaka, ovdje se pojave i oni.
 - **U blizini** — geolokacija; popis se pretvara u deset najbližih stajališta
   s udaljenostima.
 
@@ -66,18 +67,26 @@ upisano je ručno. Vožnja po cestama izračunata je OSRM-om.
 Najbolje trajno rješenje: unijeti stvarna stajališta u OpenStreetMap
 (`highway=bus_stop`) — tada ih dobiva i ova aplikacija i svi ostali.
 
-### Vozni red — okviran
+### Vozni red — namjerno ga nema
 
-Službena vremena po stajalištima još nisu objavljena. Polasci se generiraju
-iz objavljenog okvira: dnevne linije približno od 6 do 22:30 sati svakih 45
-minuta, noćna linija vikendom od 22:30 do 4:50. To je u aplikaciji jasno
-označeno.
+Službena vremena polazaka po stajalištima još nisu objavljena. Aplikacija
+zato **ne prikazuje i ne izračunava** pojedinačna vremena — prikazuje samo
+ono što je Grad objavio, u polju `hours` svake linije:
 
-Kad stigne službeni vozni red, u `js/data.js` svakom danu dodaj polje
-`times` s popisom vremena — ako postoji, koristi se umjesto
-`first`/`last`/`headway`:
+    hours: { when: "6:00 – 22:30", freq: "otprilike svakih 45 min", days: "svaki dan" }
 
-    radni: { times: ["06:00", "06:45", "07:30"] }
+Kad službeni vozni red stigne, dodaj liniji polje `schedule` sa stvarnim
+vremenima po danima. Aplikacija ga tada sama prikaže i počne računati
+sljedeći polazak:
+
+    schedule: {
+      radni:    ["06:00", "06:45", "07:30"],
+      subota:   ["07:00", "08:00"],
+      nedjelja: []
+    }
+
+Nemoj generirati vremena iz razmaka — bolje je nemati ih nego imati
+izmišljena.
 
 ### Cijene karata
 
@@ -93,7 +102,7 @@ Službeni cjenik Grada Virovitice, u `js/data.js` (`FARES`).
 
 ## Što još treba
 
-1. **Službeni vozni red** — zamijeniti okvirna vremena (vidi gore).
+1. **Službeni vozni red** — dodati `schedule` po liniji (vidi gore).
 2. **Točne koordinate stajališta** — najbolje kroz OpenStreetMap.
 3. **Noćna linija** — njezina ruta i stajališta još su iz starije sheme
    (`img/shema-n.jpg`) i nisu dio novog službenog popisa.
